@@ -1,0 +1,33 @@
+> In the header file:
+
+type Bool := True | False
+
+Not(b : Bool) : Bool
+    -> Return the logical negation of `b`
+
+If<a>(b : Bool, x : a, y : a) : a
+    -> Return `x` if `b` is `True`, `y` otherwise.
+
+> In the source file:
+
+Not(True)  := False
+Not(False) := True
+
+If(True,  x, y) := x
+If(False, x, y) := y
+
+> Which gets desugared to:
+
+Not(b) := pattern match b:
+    True => False
+    False => True
+
+If(b, x, y) := pattern match b:
+    True => x
+    False => y
+
+> Which gets desugared to:
+
+Not(b) := match b { True => False; False => True; }
+
+If(b, x, y) := match b { True => x; False => y; }
