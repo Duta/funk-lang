@@ -1,28 +1,42 @@
 module Funk.IR.ParsedAST where
 
-data HeaderFile = {
+type Name = String
+
+data HeaderFile = HeaderFile {
   definedTypes     :: [TypeDefinition],
+  definedClasses   :: [ClassDefinition],
   assumedInstances :: [AssumedInstance],
   functionSigs     :: [FunctionSignature]
 } deriving (Show, Eq)
 
-data SourceFile = {
+data SourceFile = SourceFile {
   instances :: [InstanceDefinition],
   functions :: [FunctionDefinition]
 } deriving (Show, Eq)
 
-data TypeDefinition = {
+data TypeDefinition = TypeDefinition {
   typeInfo     :: String,
-  type         :: Type
+  definedType  :: Type,
   constructors :: [Constructor]
 } deriving (Show, Eq)
 
-data AssumedInstance = {
+data ClassDefinition = ClassDefinition {
+  definedClass     :: Typeclass,
+  classConstraints :: [Typeclass],
+  classFunctions   :: [FunctionSignature]
+} deriving (Show, Eq)
+
+data Typeclass = Typeclass {
+  className :: Name,
+  classType :: Name
+} deriving (Show, Eq)
+
+data AssumedInstance = AssumedInstance {
   assumedClass :: Name,
   assumedType  :: Name
 } deriving (Show, Eq)
 
-data FunctionSignature = {
+data FunctionSignature = FunctionSignature {
   funcInfo   :: String,
   funcName   :: Name,
   funcGens   :: [Name],
@@ -30,12 +44,12 @@ data FunctionSignature = {
   funcRet    :: Type
 } deriving (Show, Eq)
 
-data Constructor = {
+data Constructor = Constructor {
   conName   :: Name,
   conParams :: [Parameter]
 } deriving (Show, Eq)
 
-data Parameter = {
+data Parameter = Parameter {
   paramName :: Name,
   paramType :: ParamType
 } deriving (Show, Eq)
@@ -45,15 +59,21 @@ data ParamType
   | RegType Type
   deriving (Show, Eq)
 
-data Type = {
+data FunctionType = FunctionType {
+  paramTypes :: [Type],
+  retType    :: Type
+} deriving (Show, Eq)
+
+data Type = Type {
   typeName :: Name,
   typeGens :: [Name]
 } deriving (Show, Eq)
 
-data InstanceDefinition = {
-  -- TODO
+data InstanceDefinition = InstanceDefinition {
+  instClass :: Typeclass,
+  instFuncs :: [FunctionDefinition]
 } deriving (Show, Eq)
 
-data FunctionDefinition = {
-  -- TODO
+data FunctionDefinition = FunctionDefinition {
+  defFuncName :: Name
 } deriving (Show, Eq)
