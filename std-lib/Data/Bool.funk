@@ -1,0 +1,19 @@
+Data.Bool
+=========
+
+Not( True) := False
+Not(False) := True
+
+If( True, x, y) := x
+If(False, x, y) := y
+
+And(True, True) := True
+And(   b,   b') := False
+
+Or(True,   b') := True
+Or(   b, True) := True
+Or(   b,   b') := False
+
+Xor( True, False) := True
+Xor(False,  True) := True
+Xor(    b,    b') := False

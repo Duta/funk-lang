@@ -1,0 +1,8 @@
+Class.Applicative
+=================
+
+typeclass Applicative<t> given Functor<t>:
+    Singleton<a>(x : a) : t<a>
+        -> Return a `t` just holding `x`.
+    Apply<a, b>(f : t<a -> b>, x : t<a>) : t<b>
+        -> Applies all functions in `f` to all `a`s in `x`.

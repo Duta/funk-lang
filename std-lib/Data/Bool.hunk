@@ -1,0 +1,20 @@
+Data.Bool
+=========
+
+type Bool := True | False
+    -> The type of booleans.
+
+Not(b : Bool) : Bool
+    -> Return the logical negation of `b`.
+
+If<a>(b : Bool, x : a, y : a) : a
+    -> Return `x` if `b` is `True`, `y` otherwise.
+
+And(b : Bool, b' : Bool) : Bool
+    -> Return `True` only if both `b` and `b'` are `True`.
+
+Or(b : Bool, b' : Bool) : Bool
+    -> Return `True` if at least one of `b` and `b'` are `True`.
+
+Xor(b : Bool, b' : Bool) : Bool
+    -> Return `True` if exactly one of `b` and `b'` are `True`.

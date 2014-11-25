@@ -1,0 +1,22 @@
+Data.Maybe
+==========
+
+instance Functor<Maybe>:
+    Map(f,   None) := None
+    Map(f, One(x)) := One(f(x))
+
+instance Applicative<Maybe>:
+    Singleton(x) := One(x)
+
+    Apply(One(f), One(x)) := One(f(x))
+    Apply(     f,      x) := None
+
+instance Monad<Maybe>:
+    Seq(  None, f) := None
+    Seq(One(x), f) := f(x)
+
+RecMaybe(y, f,   None) := y
+RecMaybe(y, f, One(x)) := f(x)
+
+FromMaybe(y,   None) := y
+FromMaybe(y, One(x)) := x

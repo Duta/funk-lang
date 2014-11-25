@@ -1,0 +1,16 @@
+Data.Maybe
+==========
+
+type Maybe<a> := None | One(x : a)
+    -> A `Maybe<a>` holds either zero or one `a`s.
+
+instance Functor<Maybe>.
+instance Applicative<Maybe>.
+instance Monad<Maybe>.
+
+RecMaybe<a, b>(y : b, f : a -> b, x : Maybe<a>) : b
+    -> Returns the result of `f` applied to the `a` inside `x`
+    if there is one - if there is not, returns `y`.
+
+FromMaybe<a>(y : a, x : Maybe<a>) : a
+    -> Extracts the `a` from `x`, returning `y` if there was none.

@@ -1,0 +1,6 @@
+Class.Functor
+=============
+
+typeclass Functor<t>:
+    Map<a, b>(f : a -> b, x : t<a>) : t<b>
+        -> Applies `f` to all `a`s inside `x`.
