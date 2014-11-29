@@ -1,0 +1,6 @@
+Class.Monad
+===========
+
+open Prelude
+
+ConstSeq(x, y) := Seq(x, Const(y))
