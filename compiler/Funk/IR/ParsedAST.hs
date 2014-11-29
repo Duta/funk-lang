@@ -1,57 +1,65 @@
+{-# LANGUAGE TemplateHaskell #-}
 module Funk.IR.ParsedAST where
+
+import Control.Lens
 
 type Name = String
 
+data ParsedFile
+  = Header [Name] HeaderFile
+  | Source [Name] SourceFile
+  deriving (Show, Eq)
+
 data HeaderFile = HeaderFile {
-  definedTypes     :: [TypeDefinition],
-  definedClasses   :: [ClassDefinition],
-  assumedInstances :: [AssumedInstance],
-  functionSigs     :: [FunctionSignature]
+  _definedTypes     :: [TypeDefinition],
+  _definedClasses   :: [ClassDefinition],
+  _assumedInstances :: [AssumedInstance],
+  _functionSigs     :: [FunctionSignature]
 } deriving (Show, Eq)
 
 data SourceFile = SourceFile {
-  instances :: [InstanceDefinition],
-  functions :: [FunctionDefinition]
+  _instances :: [InstanceDefinition],
+  _functions :: [FunctionDefinition]
 } deriving (Show, Eq)
 
 data TypeDefinition = TypeDefinition {
-  typeInfo     :: String,
-  definedType  :: Type,
-  constructors :: [Constructor]
+  _typeInfo     :: String,
+  _definedType  :: Type,
+  _constructors :: [Constructor]
 } deriving (Show, Eq)
 
 data ClassDefinition = ClassDefinition {
-  definedClass     :: Typeclass,
-  classConstraints :: [Typeclass],
-  classFunctions   :: [FunctionSignature]
+  _definedClass     :: Typeclass,
+  _classConstraints :: [Typeclass],
+  _classFunctions   :: [FunctionSignature]
 } deriving (Show, Eq)
 
 data Typeclass = Typeclass {
-  className :: Name,
-  classType :: Name
+  _className :: Name,
+  _classType :: Name
 } deriving (Show, Eq)
 
 data AssumedInstance = AssumedInstance {
-  assumedClass :: Name,
-  assumedType  :: Name
+  _assumedClass :: Name,
+  _assumedType  :: Type
 } deriving (Show, Eq)
 
 data FunctionSignature = FunctionSignature {
-  funcInfo   :: String,
-  funcName   :: Name,
-  funcGens   :: [Name],
-  funcParams :: [Parameter],
-  funcRet    :: Type
+  _funcInfo   :: String,
+  _funcName   :: Name,
+  _funcGens   :: [Name],
+  _funcParams :: [Parameter],
+  _funcRet    :: Type
 } deriving (Show, Eq)
 
 data Constructor = Constructor {
-  conName   :: Name,
-  conParams :: [Parameter]
+  _conName   :: Name,
+  _conParams :: [Parameter]
 } deriving (Show, Eq)
 
 data Parameter = Parameter {
-  paramName :: Name,
-  paramType :: ParamType
+  _paramName :: Name,
+  _paramType :: ParamType
 } deriving (Show, Eq)
 
 data ParamType
@@ -60,20 +68,34 @@ data ParamType
   deriving (Show, Eq)
 
 data FunctionType = FunctionType {
-  paramTypes :: [Type],
-  retType    :: Type
+  _paramTypes :: [Type],
+  _retType    :: Type
 } deriving (Show, Eq)
 
 data Type = Type {
-  typeName :: Name,
-  typeGens :: [Name]
+  _typeName :: Name,
+  _typeGens :: [Name]
 } deriving (Show, Eq)
 
 data InstanceDefinition = InstanceDefinition {
-  instClass :: Typeclass,
-  instFuncs :: [FunctionDefinition]
+  _instClass :: Typeclass,
+  _instFuncs :: [FunctionDefinition]
 } deriving (Show, Eq)
 
 data FunctionDefinition = FunctionDefinition {
-  defFuncName :: Name
+  _defFuncName :: Name
 } deriving (Show, Eq)
+
+makeLenses ''HeaderFile
+makeLenses ''SourceFile
+makeLenses ''TypeDefinition
+makeLenses ''ClassDefinition
+makeLenses ''Typeclass
+makeLenses ''AssumedInstance
+makeLenses ''FunctionSignature
+makeLenses ''Constructor
+makeLenses ''Parameter
+makeLenses ''FunctionType
+makeLenses ''Type
+makeLenses ''InstanceDefinition
+makeLenses ''FunctionDefinition

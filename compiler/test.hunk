@@ -1,0 +1,6 @@
+Some.Test.Module
+================
+
+type Bool := True | False
+
+type Color := Red | Green | Blue
