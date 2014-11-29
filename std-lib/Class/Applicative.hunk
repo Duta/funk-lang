@@ -1,6 +1,8 @@
 Class.Applicative
 =================
 
+open Class.Functor
+
 typeclass Applicative<t> given Functor<t>:
     Singleton<a>(x : a) : t<a>
         -> Return a `t` just holding `x`.

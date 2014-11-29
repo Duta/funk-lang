@@ -1,6 +1,10 @@
 Data.Maybe
 ==========
 
+open Class.Applicative
+open Class.Functor
+open Class.Monad
+
 instance Functor<Maybe>:
     Map(f,   None) := None
     Map(f, One(x)) := One(f(x))
