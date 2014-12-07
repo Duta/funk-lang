@@ -1,0 +1,6 @@
+Class.Monoid
+============
+
+typeclass Monoid<t>:
+    Unit() : t
+    Combine(x : t, y : t) : t
