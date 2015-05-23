@@ -1,0 +1,4 @@
+Prelude
+=======
+
+Const(x, y) := x

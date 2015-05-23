@@ -4,6 +4,7 @@ Data.Maybe
 open Class.Applicative
 open Class.Functor
 open Class.Monad
+open Prelude
 
 instance Functor<Maybe>:
     Map(f,   None) := None
@@ -22,5 +23,4 @@ instance Monad<Maybe>:
 RecMaybe(y, f,   None) := y
 RecMaybe(y, f, One(x)) := f(x)
 
-FromMaybe(y,   None) := y
-FromMaybe(y, One(x)) := x
+FromMaybe(y, x) := RecMaybe(y, Id, x);

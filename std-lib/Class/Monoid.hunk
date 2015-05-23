@@ -1,6 +1,7 @@
 Class.Monoid
 ============
 
-typeclass Monoid<t>:
+open Class.Semigroup
+
+typeclass Monoid<t> given Semigroup<t>:
     Unit() : t
-    Combine(x : t, y : t) : t

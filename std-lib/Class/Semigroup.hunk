@@ -1,0 +1,5 @@
+Class.Semigroup
+===============
+
+typeclass Semigroup<t>:
+    Combine(x : t, y : t) : t

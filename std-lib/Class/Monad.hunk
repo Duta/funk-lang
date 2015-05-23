@@ -8,6 +8,6 @@ typeclass Monad<t> given Applicative<t>:
         -> Sequences the result `x` of a monadic computation
         into another monadic computation `f`.
 
-ConstSeq<m, a, b>(x : t<a>, y : t<b>) : t<b>
-        given Monad<t>
-    -> `Seq`, where the subsequent computation does not rely on the result of the first.
+ConstSeq<m, a, b>(x : t<a>, y : t<b>) : t<b> given Monad<t>
+    -> `Seq`, where the subsequent computation
+    does not rely on the result of the first.

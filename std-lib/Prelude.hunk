@@ -1,0 +1,9 @@
+Prelude
+=======
+
+Const<a, b>(x : a, y : b) : a
+    -> The *K combinator* - returns the
+    first argument, irrespective of the second.
+
+Id<a>(x : a) : a
+    -> The identity function.
